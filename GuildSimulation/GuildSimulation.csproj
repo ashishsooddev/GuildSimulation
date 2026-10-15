@@ -12,7 +12,6 @@
     <Folder Include="Inventory\" />
     <Folder Include="Controllers\" />
     <Folder Include="Specializations\" />
-    <Folder Include="World\" />
   </ItemGroup>
 
 </Project>
