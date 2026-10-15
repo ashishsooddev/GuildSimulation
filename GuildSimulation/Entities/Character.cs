@@ -17,6 +17,9 @@ namespace GuildSimulation.Entities
         int Intellect {  get; set; }
         int Agility {  get; set; }
 
+        void Act();
+        void PrintDetails();
+        void Speak();
     }
 
     public class Character : ICharacter

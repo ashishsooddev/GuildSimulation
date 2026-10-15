@@ -47,5 +47,46 @@ namespace GuildSimulation.Specializations
             get => _character.Agility;
             set => _character.Agility = value;
         }
+        public virtual void Act()
+        {
+            _character.Act();
+        }
+
+        public virtual void Speak()
+        {
+            _character.Speak();
+        }
+
+        public virtual void PrintDetails()
+        {
+            _character.PrintDetails();
+        }
     }
+
+        public class TelekineticDecorator : CharacterDecorator
+        {
+            public TelekineticDecorator(ICharacter character) : base(character)
+            {
+                Intellect += 20;
+                PsychicEnergy = 100;
+            }
+
+            public int PsychicEnergy { get; private set; }
+
+            public override void Act()
+            {
+                Console.WriteLine($"{Name} focuses their mind, levitating objects with telekinetic power!");
+            }
+
+            public override void Speak()
+            {
+                Console.WriteLine($"{Name} whispers: 'I can move things with my mind.'");
+            }
+
+            public override void PrintDetails()
+            {
+                base.PrintDetails();
+                Console.WriteLine($"[Specialization: Telekinetic -> Psychic Boost Applied -> Psychic Energy: {PsychicEnergy}]");
+            }
+        }
 }
