@@ -26,5 +26,12 @@ namespace GuildSimulation.World
             Day++;
             GuildGold += 100;
         }
+        public void DisplayWorldStatus()
+        {
+            Console.WriteLine("GLobal World State");
+            Console.WriteLine($"Current Guild Day: {Day}");
+            Console.WriteLine($"Guild Treasury: {GuildGold} Gold");
+            Console.WriteLine($"Active Quest: {ActiveQuest}");
+        }
     }
 }
