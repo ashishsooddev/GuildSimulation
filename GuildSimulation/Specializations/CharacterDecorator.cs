@@ -89,4 +89,28 @@ namespace GuildSimulation.Specializations
                 Console.WriteLine($"[Specialization: Telekinetic -> Psychic Boost Applied -> Psychic Energy: {PsychicEnergy}]");
             }
         }
+    public class PaladinDecorator : CharacterDecorator
+    {
+        public PaladinDecorator(ICharacter character) : base(character)
+        {
+            Defense += 12;
+            Strength += 8;
+        }
+
+        public override void Act()
+        {
+            Console.WriteLine($"{Name} steps up with a spiked baseball bat to protect the party!");
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine($"{Name} says: 'Nobody touches my friends!'");
+        }
+
+        public override void PrintDetails()
+        {
+            base.PrintDetails();
+            Console.WriteLine("[Specialization: Party Paladin | Defense & Combat Boost Applied]");
+        }
+    }
 }
