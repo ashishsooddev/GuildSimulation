@@ -17,7 +17,7 @@ namespace GuildSimulation.World
         {
             Day = 1;
             GuildGold = 500;
-            ActiveQuest = "Goblin Threat in the Whispering Woods";
+            ActiveQuest = "Strange Magnetic Interference at Hawkins Lab";
         }
         public static WorldState Instance => _instance;
 
@@ -28,7 +28,7 @@ namespace GuildSimulation.World
         }
         public void DisplayWorldStatus()
         {
-            Console.WriteLine("GLobal World State");
+            Console.WriteLine("Hawkins World State");
             Console.WriteLine($"Current Guild Day: {Day}");
             Console.WriteLine($"Guild Treasury: {GuildGold} Gold");
             Console.WriteLine($"Active Quest: {ActiveQuest}");
