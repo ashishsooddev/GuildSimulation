@@ -1,10 +1,13 @@
-﻿namespace GuildSimulation
+﻿using GuildSimulation.Controllers;
+
+namespace GuildSimulation
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            GameController controller = new GameController();
+            controller.Run();
         }
     }
 }
