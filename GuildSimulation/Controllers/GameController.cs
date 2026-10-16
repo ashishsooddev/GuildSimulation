@@ -90,5 +90,42 @@ namespace GuildSimulation.Controllers
             }
         }
 
+        private void ViewRoster()
+        {
+            Console.WriteLine("=== HAWKINS PARTY ROSTER ===");
+            if (_partyMembers.Count == 0)
+            {
+                Console.WriteLine("No party members have been recruited yet.");
+            }
+            else
+            {
+                for (int i = 0; i < _partyMembers.Count; i++)
+                {
+                    Console.WriteLine($"[{i}] {_partyMembers[i].Name} ({_partyMembers[i].Archetype})");
+                }
+                Console.WriteLine("\nEnter index of resident to view full details (or press Enter to skip): ");
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out int index) && index >= 0 && index < _partyMembers.Count)
+                {
+                    Console.WriteLine();
+                    _partyMembers[index].PrintDetails();
+                }
+            }
+        }
+        private void RecruitCharacter()
+        {
+            Console.Write("Enter resident name: ");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Choose Archetype (Party Member, Hawkins Police, Lab Experiment): ");
+            string archetype = Console.ReadLine();
+
+            ICharacter newChar = CharacterFactory.CreateCharacter(archetype, name);
+            _partyMembers.Add(newChar);
+
+            Console.WriteLine($"Successfully recruited {name} as a {newChar.Archetype}!");
+        }
+
+
     }
 }
