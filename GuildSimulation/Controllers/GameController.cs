@@ -181,7 +181,53 @@ namespace GuildSimulation.Controllers
                 Console.WriteLine();
             }
         }
+        private void ManageInventory()
+        {
+            Console.WriteLine("SUPPLY STASH MANAGEMENT");
+            Console.WriteLine("1. View All Stashed Items");
+            Console.WriteLine("2. Search For Item");
+            Console.WriteLine("3. Add Item to Stash");
+            Console.WriteLine("4. Remove Item from Stash");
+            Console.Write("Choose an option: ");
+            string subChoice = Console.ReadLine();
 
+            if (subChoice == "1")
+            {
+                _inventoryFacade.ListAllItems();
+            }
+            else if (subChoice == "2")
+            {
+                Console.Write("Enter item name to search: ");
+                string query = Console.ReadLine();
+                _inventoryFacade.SearchItem(query);
+            }
+            else if (subChoice == "3")
+            {
+                Console.Write("Enter item name: ");
+                string name = Console.ReadLine();
+                Console.Write("Enter item type: ");
+                string type = Console.ReadLine();
+                Console.Write("Enter item utility rating: ");
+                if (int.TryParse(Console.ReadLine(), out int val))
+                {
+                    _inventoryFacade.AddItem(name, type, val);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid utility value entered.");
+                }
+            }
+            else if (subChoice == "4")
+            {
+                Console.Write("Enter item name to remove: ");
+                string name = Console.ReadLine();
+                _inventoryFacade.RemoveItem(name);
+            }
+            else
+            {
+                Console.WriteLine("Invalid inventory option.");
+            }
+        }
 
     }
 }
