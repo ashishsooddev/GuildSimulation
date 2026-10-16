@@ -126,6 +126,62 @@ namespace GuildSimulation.Controllers
             Console.WriteLine($"Successfully recruited {name} as a {newChar.Archetype}!");
         }
 
+        private void AssignSpecialization()
+        {
+            if (_partyMembers.Count == 0)
+            {
+                Console.WriteLine("No residents available to specialize.");
+                return;
+            }
+
+            ViewRoster();
+            Console.Write("Enter the index of the resident to specialize: ");
+            if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < _partyMembers.Count)
+            {
+                Console.WriteLine("Choose Specialization (1: Telekinetic Abilities, 2: Party Paladin): ");
+                string specChoice = Console.ReadLine();
+
+                ICharacter target = _partyMembers[index];
+
+                if (specChoice == "1")
+                {
+                    _partyMembers[index] = new TelekineticDecorator(target);
+                    Console.WriteLine($"{target.Name} has unlocked Telekinetic Powers!");
+                }
+                else if (specChoice == "2")
+                {
+                    _partyMembers[index] = new PaladinDecorator(target);
+                    Console.WriteLine($"{target.Name} is now the Party Paladin!");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid specialization choice.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid index selected.");
+            }
+        }
+
+        private void SimulateActions()
+        {
+            if (_partyMembers.Count == 0)
+            {
+                Console.WriteLine("No residents available to simulate.");
+                return;
+            }
+
+            Console.WriteLine("SIMULATING HAWKINS ACTIVITIES");
+            foreach (var character in _partyMembers)
+            {
+                Console.Write($"{character.Name}: ");
+                character.Act();
+                character.Speak();
+                Console.WriteLine();
+            }
+        }
+
 
     }
 }
